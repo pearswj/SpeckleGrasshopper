@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# script/bootstrap: Resolve all dependencies that the application requires to
+#                   run.
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+nuget restore packages.config -packagesdirectory packages
+
+nuget restore ../SpeckleAccountManager/packages.config -packagesdirectory ../packages
+
+nuget restore ../SpeckleCore/SpeckleCore/packages.config -packagesdirectory ../SpeckleCore/SpeckleCore/packages
+
+nuget restore ../SpeckleRhinoConverter/packages.config -packagesdirectory ../SpeckleRhinoConverter/packages
+
+nuget restore ../SpeckleUserDataUtils/packages.config -packagesdirectory ../SpeckleUserDataUtils/packages
